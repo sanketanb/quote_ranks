@@ -1,0 +1,27 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to S {{ title }}!
+  </h1>
+  <!-- <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="> -->
+</div>
+<p> {{ quote | json }} </p>
+<form (submit)="createNewQuote()">
+  <h2>Add a Quote: </h2>
+  <input type="text" name="content" [(ngModel)]="quote.content" />
+  <!-- #valid ="ngModel" minlength=2 required -->
+  <h3>Author: </h3>
+  <input type="text" name="author" [(ngModel)]="quote.author" />
+  <button type="submit">Add quote</button>
+</form>
+<p *ngIf="display_errors">{{display_errors}}</p>
+<h1> Quotes List</h1>
+<p> </p>
+  <div *ngFor="let individual of display_quotes" class = "quotes_block">
+    <p>{{individual.content}}</p>
+    <p>Rating: {{individual.rating}}</p>
+    <p>--{{individual.author}}</p>
+    <button (click)="voteUp(individual._id)">Vote UP</button>
+    <button (click)="voteDown(individual._id)">Vote DOWN</button>
+    <button (click)="deleteQuote(individual._id)">DELETE</button>
+  </div>
